@@ -1,0 +1,28 @@
+{
+    "regions": [
+        {
+            "name": "ReSubmerged Europe",
+            "description": "Official ReSubmerged community region for Europe.",
+            "address": "eu.example.com:22023",
+            "players": 0,
+            "maxPlayers": 50,
+            "status": "online"
+        },
+        {
+            "name": "ReSubmerged North America",
+            "description": "Community region for players in North America.",
+            "address": "us.example.com:22023",
+            "players": 0,
+            "maxPlayers": 50,
+            "status": "online"
+        },
+        {
+            "name": "Community Server",
+            "description": "A community-hosted ReSubmerged region.",
+            "address": "play.example.com:22023",
+            "players": 0,
+            "maxPlayers": 50,
+            "status": "offline"
+        }
+    ]
+}
