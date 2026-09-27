@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -6,376 +7,187 @@
 
     <title>ReSubmerged Servers</title>
 
-    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-family: Arial, sans-serif;
+
+            color: white;
+
+            background:
+                radial-gradient(
+                    circle at 50% 20%,
+                    #0b6385,
+                    #06364f 45%,
+                    #021522 100%
+                );
+
+            overflow: hidden;
+        }
+
+        .ocean {
+            position: fixed;
+            inset: 0;
+
+            pointer-events: none;
+        }
+
+        .bubble {
+            position: absolute;
+
+            bottom: -50px;
+
+            width: 15px;
+            height: 15px;
+
+            border: 1px solid rgba(255,255,255,.5);
+            border-radius: 50%;
+
+            animation: rise 8s linear infinite;
+        }
+
+        .bubble:nth-child(1) {
+            left: 20%;
+            animation-delay: 0s;
+        }
+
+        .bubble:nth-child(2) {
+            left: 40%;
+            width: 8px;
+            height: 8px;
+            animation-delay: 2s;
+        }
+
+        .bubble:nth-child(3) {
+            left: 65%;
+            width: 22px;
+            height: 22px;
+            animation-delay: 4s;
+        }
+
+        .bubble:nth-child(4) {
+            left: 80%;
+            width: 10px;
+            height: 10px;
+            animation-delay: 1s;
+        }
+
+        @keyframes rise {
+            from {
+                transform: translateY(0);
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 1;
+            }
+
+            to {
+                transform: translateY(-110vh);
+                opacity: 0;
+            }
+        }
+
+        .card {
+            position: relative;
+            z-index: 2;
+
+            width: min(600px, calc(100% - 40px));
+
+            padding: 60px 40px;
+
+            text-align: center;
+
+            border: 1px solid rgba(130, 230, 255, .25);
+            border-radius: 24px;
+
+            background: rgba(3, 30, 45, .7);
+
+            box-shadow:
+                0 30px 80px rgba(0, 0, 0, .4),
+                inset 0 0 40px rgba(80, 220, 255, .05);
+
+            backdrop-filter: blur(15px);
+        }
+
+        .icon {
+            font-size: 60px;
+        }
+
+        h1 {
+            margin: 20px 0 10px;
+
+            font-size: 42px;
+        }
+
+        h1 span {
+            color: #58ddff;
+        }
+
+        p {
+            color: #a8cfdd;
+
+            line-height: 1.7;
+        }
+
+        .status {
+            display: inline-block;
+
+            margin-top: 20px;
+            padding: 10px 18px;
+
+            border-radius: 30px;
+
+            color: #69efb5;
+
+            background: rgba(50, 220, 150, .1);
+
+            border: 1px solid rgba(50, 220, 150, .2);
+        }
+    </style>
 </head>
 
 <body>
 
-    <!-- Bulles -->
-    <div class="bubbles">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
+    <div class="ocean">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
     </div>
 
-    <!-- Rayons de lumière -->
-    <div class="light-rays"></div>
+    <main class="card">
 
-    <!-- Navigation -->
-    <header class="navbar">
-        <div class="logo">
-            <span class="logo-icon">⚓</span>
-            <span>ReSubmerged</span>
+        <div class="icon">🌊</div>
+
+        <h1>
+            Re<span>Submerged</span>
+        </h1>
+
+        <p>
+            Welcome to the ReSubmerged Servers website.
+        </p>
+
+        <p>
+            If you can see this page, GitHub Pages is working correctly.
+        </p>
+
+        <div class="status">
+            ● GitHub Pages is working
         </div>
-
-        <nav>
-            <a href="#servers">Servers</a>
-            <a href="#connect">How to connect</a>
-            <a href="#add">Add a region</a>
-        </nav>
-    </header>
-
-    <!-- Hero -->
-    <main>
-
-        <section class="hero">
-
-            <div class="hero-content">
-
-                <div class="sonar">
-                    <div class="sonar-ring ring-1"></div>
-                    <div class="sonar-ring ring-2"></div>
-                    <div class="sonar-ring ring-3"></div>
-
-                    <div class="sonar-sweep"></div>
-
-                    <div class="sonar-center">
-                        ●
-                    </div>
-
-                    <div class="sonar-dot dot-1"></div>
-                    <div class="sonar-dot dot-2"></div>
-                    <div class="sonar-dot dot-3"></div>
-                </div>
-
-                <div class="hero-text">
-
-                    <p class="eyebrow">
-                        RECONNECTED • REDEFINED
-                    </p>
-
-                    <h1>
-                        ReSubmerged
-                    </h1>
-
-                    <h2>
-                        Servers
-                    </h2>
-
-                    <p class="hero-description">
-                        Discover community-hosted regions for
-                        <strong>ReSubmerged</strong>.
-                        Dive into custom servers and reconnect
-                        with the community.
-                    </p>
-
-                    <div class="hero-buttons">
-                        <a href="#servers" class="button primary">
-                            🌊 Explore servers
-                        </a>
-
-                        <a href="#add" class="button secondary">
-                            ⚓ Add your region
-                        </a>
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="scroll-indicator">
-                <span>SCROLL TO DIVE</span>
-                <div>↓</div>
-            </div>
-
-        </section>
-
-
-        <!-- Servers -->
-        <section id="servers" class="section">
-
-            <div class="section-title">
-
-                <p class="eyebrow">
-                    SONAR NETWORK
-                </p>
-
-                <h2>
-                    Available regions
-                </h2>
-
-                <p>
-                    Community regions currently registered
-                    in the ReSubmerged network.
-                </p>
-
-            </div>
-
-
-            <div class="server-grid">
-
-                <!-- Serveur exemple -->
-                <article class="server-card">
-
-                    <div class="server-header">
-
-                        <div>
-                            <span class="status online"></span>
-                            <span class="status-text">
-                                ONLINE
-                            </span>
-                        </div>
-
-                        <span class="server-region">
-                            EU
-                        </span>
-
-                    </div>
-
-                    <h3>
-                        Europe
-                    </h3>
-
-                    <p class="server-address">
-                        eu.resubmerged.example
-                    </p>
-
-                    <div class="server-info">
-
-                        <div>
-                            <span>Players</span>
-                            <strong>42</strong>
-                        </div>
-
-                        <div>
-                            <span>Ping</span>
-                            <strong>54 ms</strong>
-                        </div>
-
-                    </div>
-
-                    <button class="copy-button">
-                        📋 Copy address
-                    </button>
-
-                </article>
-
-
-                <!-- Serveur exemple -->
-                <article class="server-card">
-
-                    <div class="server-header">
-
-                        <div>
-                            <span class="status online"></span>
-                            <span class="status-text">
-                                ONLINE
-                            </span>
-                        </div>
-
-                        <span class="server-region">
-                            NA
-                        </span>
-
-                    </div>
-
-                    <h3>
-                        North America
-                    </h3>
-
-                    <p class="server-address">
-                        na.resubmerged.example
-                    </p>
-
-                    <div class="server-info">
-
-                        <div>
-                            <span>Players</span>
-                            <strong>18</strong>
-                        </div>
-
-                        <div>
-                            <span>Ping</span>
-                            <strong>91 ms</strong>
-                        </div>
-
-                    </div>
-
-                    <button class="copy-button">
-                        📋 Copy address
-                    </button>
-
-                </article>
-
-
-                <!-- Serveur hors ligne -->
-                <article class="server-card offline-card">
-
-                    <div class="server-header">
-
-                        <div>
-                            <span class="status offline"></span>
-                            <span class="status-text">
-                                OFFLINE
-                            </span>
-                        </div>
-
-                        <span class="server-region">
-                            AS
-                        </span>
-
-                    </div>
-
-                    <h3>
-                        Asia
-                    </h3>
-
-                    <p class="server-address">
-                        asia.resubmerged.example
-                    </p>
-
-                    <div class="server-info">
-
-                        <div>
-                            <span>Players</span>
-                            <strong>—</strong>
-                        </div>
-
-                        <div>
-                            <span>Ping</span>
-                            <strong>—</strong>
-                        </div>
-
-                    </div>
-
-                    <button class="copy-button" disabled>
-                        Server offline
-                    </button>
-
-                </article>
-
-            </div>
-
-        </section>
-
-
-        <!-- Connexion -->
-        <section id="connect" class="section connection-section">
-
-            <div class="section-title">
-
-                <p class="eyebrow">
-                    READY TO DIVE?
-                </p>
-
-                <h2>
-                    How to connect
-                </h2>
-
-            </div>
-
-            <div class="steps">
-
-                <div class="step">
-                    <span>01</span>
-                    <h3>Choose a region</h3>
-                    <p>
-                        Pick one of the community regions
-                        available above.
-                    </p>
-                </div>
-
-                <div class="step">
-                    <span>02</span>
-                    <h3>Copy the address</h3>
-                    <p>
-                        Copy the server address with one click.
-                    </p>
-                </div>
-
-                <div class="step">
-                    <span>03</span>
-                    <h3>Connect</h3>
-                    <p>
-                        Enter the address in your ReSubmerged
-                        client and dive in.
-                    </p>
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- Ajouter une région -->
-        <section id="add" class="add-section">
-
-            <div class="add-card">
-
-                <div class="add-icon">
-                    ⚓
-                </div>
-
-                <div>
-                    <p class="eyebrow">
-                        COMMUNITY
-                    </p>
-
-                    <h2>
-                        Have your own region?
-                    </h2>
-
-                    <p>
-                        Add your modded ReSubmerged region
-                        to the community network.
-                    </p>
-                </div>
-
-                <a
-                    href="https://github.com/Isax820/ReSubmerged-Servers/issues"
-                    class="button primary"
-                    target="_blank"
-                    rel="noopener"
-                >
-                    Add a region →
-                </a>
-
-            </div>
-
-        </section>
 
     </main>
 
-
-    <!-- Footer -->
-    <footer>
-
-        <div>
-            ⚓ <strong>ReSubmerged Servers</strong>
-        </div>
-
-        <p>
-            Community project • Built for the deep
-        </p>
-
-    </footer>
-
-<script src="script.js"></script>
-
 </body>
 </html>
+```
