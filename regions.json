@@ -1,26 +1,28 @@
-[
-    {
-        "name": "ReSubmerged Europe",
-        "code": "EU",
-        "address": "eu.resubmerged.example",
-        "status": "online",
-        "players": 42,
-        "ping": 54
-    },
-    {
-        "name": "ReSubmerged North America",
-        "code": "NA",
-        "address": "na.resubmerged.example",
-        "status": "SOON",
-        "players": 0,
-        "ping": 0
-    },
-    {
-        "name": "ReSubmerged Asia",
-        "code": "AS",
-        "address": "asia.resubmerged.example",
-        "status": "SOON",
-        "players": 0,
-        "ping": 0
-    }
-]
+{
+    "regions": [
+        {
+            "name": "ReSubmerged Europe",
+            "description": "Official ReSubmerged community region for Europe.",
+            "address": "eu.example.com:22023",
+            "players": 0,
+            "maxPlayers": 50,
+            "status": "SOON"
+        },
+        {
+            "name": "ReSubmerged North America",
+            "description": "Community region for players in North America.",
+            "address": "us.example.com:22023",
+            "players": 0,
+            "maxPlayers": 50,
+            "status": "SOON"
+        },
+        {
+            "name": "Community Server",
+            "description": "A community-hosted ReSubmerged region.",
+            "address": "play.example.com:22023",
+            "players": 0,
+            "maxPlayers": 50,
+            "status": "SOON"
+        }
+    ]
+}

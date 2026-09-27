@@ -1,193 +1,283 @@
-```html
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <meta name="theme-color" content="#031b2b">
+    <meta name="description" content="ReSubmerged Servers - Discover and connect to ReSubmerged regions.">
+
     <title>ReSubmerged Servers</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            min-height: 100vh;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            font-family: Arial, sans-serif;
-
-            color: white;
-
-            background:
-                radial-gradient(
-                    circle at 50% 20%,
-                    #0b6385,
-                    #06364f 45%,
-                    #021522 100%
-                );
-
-            overflow: hidden;
-        }
-
-        .ocean {
-            position: fixed;
-            inset: 0;
-
-            pointer-events: none;
-        }
-
-        .bubble {
-            position: absolute;
-
-            bottom: -50px;
-
-            width: 15px;
-            height: 15px;
-
-            border: 1px solid rgba(255,255,255,.5);
-            border-radius: 50%;
-
-            animation: rise 8s linear infinite;
-        }
-
-        .bubble:nth-child(1) {
-            left: 20%;
-            animation-delay: 0s;
-        }
-
-        .bubble:nth-child(2) {
-            left: 40%;
-            width: 8px;
-            height: 8px;
-            animation-delay: 2s;
-        }
-
-        .bubble:nth-child(3) {
-            left: 65%;
-            width: 22px;
-            height: 22px;
-            animation-delay: 4s;
-        }
-
-        .bubble:nth-child(4) {
-            left: 80%;
-            width: 10px;
-            height: 10px;
-            animation-delay: 1s;
-        }
-
-        @keyframes rise {
-            from {
-                transform: translateY(0);
-                opacity: 0;
-            }
-
-            20% {
-                opacity: 1;
-            }
-
-            to {
-                transform: translateY(-110vh);
-                opacity: 0;
-            }
-        }
-
-        .card {
-            position: relative;
-            z-index: 2;
-
-            width: min(600px, calc(100% - 40px));
-
-            padding: 60px 40px;
-
-            text-align: center;
-
-            border: 1px solid rgba(130, 230, 255, .25);
-            border-radius: 24px;
-
-            background: rgba(3, 30, 45, .7);
-
-            box-shadow:
-                0 30px 80px rgba(0, 0, 0, .4),
-                inset 0 0 40px rgba(80, 220, 255, .05);
-
-            backdrop-filter: blur(15px);
-        }
-
-        .icon {
-            font-size: 60px;
-        }
-
-        h1 {
-            margin: 20px 0 10px;
-
-            font-size: 42px;
-        }
-
-        h1 span {
-            color: #58ddff;
-        }
-
-        p {
-            color: #a8cfdd;
-
-            line-height: 1.7;
-        }
-
-        .status {
-            display: inline-block;
-
-            margin-top: 20px;
-            padding: 10px 18px;
-
-            border-radius: 30px;
-
-            color: #69efb5;
-
-            background: rgba(50, 220, 150, .1);
-
-            border: 1px solid rgba(50, 220, 150, .2);
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
+    <!-- Animated underwater background -->
     <div class="ocean">
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
+        <div class="bubble bubble-1"></div>
+        <div class="bubble bubble-2"></div>
+        <div class="bubble bubble-3"></div>
+        <div class="bubble bubble-4"></div>
+        <div class="bubble bubble-5"></div>
+        <div class="bubble bubble-6"></div>
+        <div class="bubble bubble-7"></div>
+        <div class="bubble bubble-8"></div>
     </div>
 
-    <main class="card">
+    <div class="light-rays"></div>
 
-        <div class="icon">🌊</div>
+    <!-- Navigation -->
+    <header class="navbar">
+        <a class="brand" href="#">
+            <span class="brand-icon">🌊</span>
+            <span>ReSubmerged</span>
+        </a>
 
-        <h1>
-            Re<span>Submerged</span>
-        </h1>
+        <nav>
+            <a href="#servers">Servers</a>
+            <a href="#how">How to play</a>
+            <a href="https://github.com/Isax820/ReSubmerged-Servers"
+               target="_blank"
+               rel="noopener">
+                GitHub
+            </a>
+        </nav>
+    </header>
 
-        <p>
-            Welcome to the ReSubmerged Servers website.
-        </p>
+    <!-- Hero -->
+    <main>
 
-        <p>
-            If you can see this page, GitHub Pages is working correctly.
-        </p>
+        <section class="hero">
 
-        <div class="status">
-            ● GitHub Pages is working
-        </div>
+            <div class="hero-content">
+
+                <div class="eyebrow">
+                    <span class="pulse"></span>
+                    ReSubmerged Network
+                </div>
+
+                <h1>
+                    Dive into
+                    <span>ReSubmerged</span>
+                </h1>
+
+                <p>
+                    Discover community regions and connect to
+                    ReSubmerged servers from anywhere in the world.
+                </p>
+
+                <div class="hero-buttons">
+                    <a href="#servers" class="button primary">
+                        🌊 Explore servers
+                    </a>
+
+                    <a href="#how" class="button secondary">
+                        How does it work?
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="hero-art">
+
+                <div class="sonar">
+                    <div class="sonar-ring ring-1"></div>
+                    <div class="sonar-ring ring-2"></div>
+                    <div class="sonar-ring ring-3"></div>
+
+                    <div class="sonar-sweep"></div>
+
+                    <div class="sonar-dot dot-1"></div>
+                    <div class="sonar-dot dot-2"></div>
+
+                    <div class="sonar-center">
+                        🌊
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Stats -->
+        <section class="stats">
+
+            <div class="stat">
+                <strong id="region-count">0</strong>
+                <span>Regions</span>
+            </div>
+
+            <div class="stat">
+                <strong id="online-count">0</strong>
+                <span>Online servers</span>
+            </div>
+
+            <div class="stat">
+                <strong>∞</strong>
+                <span>Possibilities</span>
+            </div>
+
+        </section>
+
+
+        <!-- Servers -->
+        <section class="section" id="servers">
+
+            <div class="section-heading">
+
+                <div>
+                    <div class="section-label">THE OCEAN</div>
+
+                    <h2>Available regions</h2>
+
+                    <p>
+                        Choose a region and dive into the community.
+                    </p>
+                </div>
+
+                <button class="refresh-button" id="refresh">
+                    ↻ Refresh
+                </button>
+
+            </div>
+
+            <div class="server-grid" id="server-grid">
+                <!-- Generated by JavaScript -->
+            </div>
+
+        </section>
+
+
+        <!-- How to play -->
+        <section class="section how-section" id="how">
+
+            <div class="section-heading centered">
+
+                <div class="section-label">GET STARTED</div>
+
+                <h2>How to connect</h2>
+
+                <p>
+                    Joining a ReSubmerged region only takes a few steps.
+                </p>
+
+            </div>
+
+
+            <div class="steps">
+
+                <article class="step">
+
+                    <div class="step-number">01</div>
+
+                    <div class="step-icon">📥</div>
+
+                    <h3>Install ReSubmerged</h3>
+
+                    <p>
+                        Install the ReSubmerged mod and make sure
+                        your game is ready.
+                    </p>
+
+                </article>
+
+
+                <article class="step">
+
+                    <div class="step-number">02</div>
+
+                    <div class="step-icon">🌐</div>
+
+                    <h3>Choose a region</h3>
+
+                    <p>
+                        Pick one of the community regions listed
+                        above.
+                    </p>
+
+                </article>
+
+
+                <article class="step">
+
+                    <div class="step-number">03</div>
+
+                    <div class="step-icon">🚀</div>
+
+                    <h3>Join the server</h3>
+
+                    <p>
+                        Add the region to your game and dive in.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- CTA -->
+        <section class="cta">
+
+            <div class="cta-glow"></div>
+
+            <div class="cta-content">
+
+                <span class="cta-icon">🐙</span>
+
+                <h2>Have your own region?</h2>
+
+                <p>
+                    Community-hosted regions can be added to the
+                    ReSubmerged network.
+                </p>
+
+                <a
+                    href="https://github.com/Isax820/ReSubmerged-Servers/issues/new"
+                    target="_blank"
+                    rel="noopener"
+                    class="button primary"
+                >
+                    ➕ Add a region
+                </a>
+
+            </div>
+
+        </section>
 
     </main>
 
+
+    <!-- Footer -->
+    <footer>
+
+        <div>
+            <strong>🌊 ReSubmerged</strong>
+            <span>Community server network</span>
+        </div>
+
+        <div class="footer-links">
+            <a
+                href="https://github.com/Isax820/ReSubmerged-Servers"
+                target="_blank"
+                rel="noopener"
+            >
+                GitHub
+            </a>
+
+            <span>•</span>
+
+            <span>Made for the community</span>
+        </div>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
 </body>
 </html>
-```

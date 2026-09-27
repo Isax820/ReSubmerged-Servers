@@ -1,167 +1,198 @@
-document.addEventListener("DOMContentLoaded", () => {
-
-    const serverGrid = document.querySelector(".server-grid");
-
-    if (!serverGrid) {
-        console.error("Server grid not found.");
-        return;
-    }
-
-    loadRegions();
+const serverGrid = document.getElementById("server-grid");
+const regionCount = document.getElementById("region-count");
+const onlineCount = document.getElementById("online-count");
+const refreshButton = document.getElementById("refresh");
 
 
-    async function loadRegions() {
+async function loadRegions() {
 
-        try {
+    try {
 
-            const response = await fetch("regions.json");
+        serverGrid.innerHTML = `
+            <div class="loading">
+                🌊 Loading regions...
+            </div>
+        `;
 
-            if (!response.ok) {
-                throw new Error("Unable to load regions.json");
-            }
+        const response = await fetch("regions.json");
 
-            const regions = await response.json();
-
-            serverGrid.innerHTML = "";
-
-            regions.forEach(region => {
-                serverGrid.appendChild(createServerCard(region));
-            });
-
-        } catch (error) {
-
-            console.error(error);
-
-            serverGrid.innerHTML = `
-                <div class="server-card">
-                    <h3>Unable to load regions</h3>
-                    <p class="server-address">
-                        Please try again later.
-                    </p>
-                </div>
-            `;
+        if (!response.ok) {
+            throw new Error("Could not load regions.json");
         }
+
+        const data = await response.json();
+
+        renderRegions(data.regions);
+
+    } catch (error) {
+
+        console.error(error);
+
+        serverGrid.innerHTML = `
+            <div class="server-card">
+                <div class="server-name">
+                    Unable to load regions
+                </div>
+
+                <p class="server-description">
+                    Check that regions.json exists and is valid.
+                </p>
+            </div>
+        `;
     }
+}
 
 
-    function createServerCard(region) {
+function renderRegions(regions) {
+
+    serverGrid.innerHTML = "";
+
+    let onlineServers = 0;
+
+    regions.forEach(region => {
+
+        if (region.status === "online") {
+            onlineServers++;
+        }
 
         const card = document.createElement("article");
 
         card.className = "server-card";
 
-        if (region.status === "offline") {
-            card.classList.add("offline-card");
-        }
-
         const isOnline = region.status === "online";
 
         card.innerHTML = `
-            <div class="server-header">
 
-                <div>
-                    <span class="status ${isOnline ? "online" : "offline"}"></span>
+            <div class="server-top">
 
-                    <span class="status-text">
-                        ${isOnline ? "ONLINE" : "OFFLINE"}
-                    </span>
+                <div class="server-name">
+                    ${escapeHtml(region.name)}
                 </div>
 
-                <span class="server-region">
-                    ${escapeHTML(region.code)}
-                </span>
+                <div class="status ${isOnline ? "" : "offline"}">
+
+                    <span class="status-dot"></span>
+
+                    ${isOnline ? "Online" : "Offline"}
+
+                </div>
 
             </div>
 
 
-            <h3>
-                ${escapeHTML(region.name)}
-            </h3>
+            <p class="server-description">
 
+                ${escapeHtml(region.description)}
 
-            <p class="server-address">
-                ${escapeHTML(region.address)}
             </p>
 
 
             <div class="server-info">
 
-                <div>
-                    <span>Players</span>
+                <span>
+                    👥 ${region.players} / ${region.maxPlayers}
+                </span>
 
-                    <strong>
-                        ${isOnline ? region.players : "—"}
-                    </strong>
-                </div>
+                <span>
+                    🌐 Region
+                </span>
+
+            </div>
 
 
-                <div>
-                    <span>Ping</span>
+            <div class="server-address">
 
-                    <strong>
-                        ${isOnline ? `${region.ping} ms` : "—"}
-                    </strong>
-                </div>
+                ${escapeHtml(region.address)}
 
             </div>
 
 
             <button
                 class="copy-button"
-                ${isOnline ? "" : "disabled"}
+                data-address="${escapeHtml(region.address)}"
             >
-                ${isOnline ? "📋 Copy address" : "Server offline"}
+                📋 Copy address
             </button>
         `;
 
 
-        const copyButton = card.querySelector(".copy-button");
-
-        if (isOnline) {
-
-            copyButton.addEventListener("click", async () => {
-
-                try {
-
-                    await navigator.clipboard.writeText(
-                        region.address
-                    );
-
-                    const originalText = copyButton.textContent;
-
-                    copyButton.textContent = "✓ Copied!";
-
-                    setTimeout(() => {
-                        copyButton.textContent = originalText;
-                    }, 1500);
-
-                } catch (error) {
-
-                    console.error(
-                        "Unable to copy address:",
-                        error
-                    );
-
-                    copyButton.textContent = "Copy failed";
-
-                    setTimeout(() => {
-                        copyButton.textContent = "📋 Copy address";
-                    }, 1500);
-                }
-            });
-        }
-
-        return card;
-    }
+        const copyButton =
+            card.querySelector(".copy-button");
 
 
-    function escapeHTML(value) {
+        copyButton.addEventListener("click", async () => {
 
-        const element = document.createElement("div");
+            const address =
+                copyButton.dataset.address;
 
-        element.textContent = value ?? "";
+            try {
 
-        return element.innerHTML;
-    }
+                await navigator.clipboard.writeText(address);
 
+                copyButton.textContent =
+                    "✓ Copied!";
+
+                setTimeout(() => {
+
+                    copyButton.textContent =
+                        "📋 Copy address";
+
+                }, 1500);
+
+            } catch {
+
+                copyButton.textContent =
+                    "Copy failed";
+            }
+        });
+
+
+        serverGrid.appendChild(card);
+    });
+
+
+    regionCount.textContent = regions.length;
+
+    onlineCount.textContent = onlineServers;
+}
+
+
+/*
+ * Prevent HTML injection when values
+ * come from regions.json.
+ */
+function escapeHtml(value) {
+
+    return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+}
+
+
+/*
+ * Refresh the region list.
+ */
+refreshButton.addEventListener("click", () => {
+
+    refreshButton.textContent =
+        "↻ Loading...";
+
+    loadRegions().finally(() => {
+
+        setTimeout(() => {
+
+            refreshButton.textContent =
+                "↻ Refresh";
+
+        }, 300);
+    });
 });
+
+
+/*
+ * Initial load.
+ */
+loadRegions();
